@@ -19,8 +19,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Item: Story = {
   args: {
-    // imageUrl: 'https://i.imgur.com/LMLn22O.png',
-    imageUrl: 'https://i.imgur.com/ro2YBcO.png',
+    thumbnailUrl: 'https://i.imgur.com/ro2YBcO.png',
     headline: 'Transition from legacy to Next',
     summary:
       'Implemented UX design with reusable components, using the pages folder structure without SSR. Added functionality with hooks and providers (including custom made npm packages). Feature list includes authentication, operations on owned items, protected routes, dynamic UI update for item selecting.',

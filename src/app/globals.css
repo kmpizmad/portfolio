@@ -1,4 +1,6 @@
 @import '~react-image-gallery/styles/css/image-gallery.css';
+@import 'swiper/css';
+@import 'swiper/css/navigation';
 
 @tailwind base;
 @tailwind components;
@@ -75,6 +77,20 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.swiper-container {
+  width: 100%;
+  max-width: 95vw;
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  width: 415px;
+  height: 100%;
+  padding: 15px;
 }
 
 .image-gallery-svg {
