@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { ExternalLink, GalleryHorizontal } from 'lucide-react';
 import CatalogItemBadges from './CatalogItemBadges';
 import CatalogItemSummary from './CatalogItemSummary';
-import CatalogItemGallery from './CatalogItemGallery';
+import CatalogItemGallery, { CatalogItemGalleryProps } from './CatalogItemGallery';
 
 const iconEffectClasses = 'transition-all duration-300 hover:scale-110';
 const iconSize = 36;
@@ -16,6 +16,7 @@ function ProjectCatalogItem({
   headline,
   summary,
   siteUrl,
+  isDarkTonedThumbnail,
   badges = [],
   images = [],
   isActive = true,
@@ -48,6 +49,7 @@ function ProjectCatalogItem({
         ></div>
         <Thumbnail
           thumbnailUrl={thumbnailUrl}
+          isDarkToned={isDarkTonedThumbnail}
           images={images}
           siteUrl={siteUrl}
           onGalleryOpen={() => setShowGallery(true)}
@@ -69,11 +71,21 @@ function ProjectCatalogItem({
 
 export default ProjectCatalogItem;
 
-function Thumbnail({ thumbnailUrl, images = [], siteUrl, onGalleryOpen }: ThumbnailProps): JSX.Element | null {
+function Thumbnail({
+  thumbnailUrl,
+  isDarkToned,
+  images = [],
+  siteUrl,
+  onGalleryOpen,
+}: ThumbnailProps): JSX.Element | null {
   return (
     <>
       <div className="relative overflow-hidden cursor-pointer bg-background group" style={{ width: 384, height: 256 }}>
-        <div className="absolute z-10 flex flex-col gap-2 transition-opacity duration-300 opacity-0 top-2 right-2 group-hover:opacity-100 text-primary-foreground">
+        <div
+          className={`absolute z-10 flex flex-col gap-2 transition-opacity duration-300 opacity-0 top-2 right-2 group-hover:opacity-100 ${
+            isDarkToned ? 'text-primary-foreground' : 'text-secondary-foreground'
+          }`}
+        >
           {siteUrl && (
             <Link href={siteUrl} target="_blank">
               <ExternalLink width={iconSize} height={iconSize} className={iconEffectClasses} />
@@ -106,15 +118,17 @@ export interface CatalogItemProps {
   thumbnailUrl: string;
   headline: string;
   summary: string;
+  isDarkTonedThumbnail?: boolean;
   badges?: string[];
   siteUrl?: string;
-  images?: string[];
+  images?: CatalogItemGalleryProps['images'];
   isActive?: boolean;
 }
 
 interface ThumbnailProps {
   thumbnailUrl: string;
-  images?: string[];
+  isDarkToned?: boolean;
+  images?: CatalogItemGalleryProps['images'];
   siteUrl?: string;
   onGalleryOpen?: () => void;
 }

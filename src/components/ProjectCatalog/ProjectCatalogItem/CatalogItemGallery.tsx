@@ -15,9 +15,9 @@ function CatalogItemGallery({ images, onClose }: CatalogItemGalleryProps): JSX.E
           onClose();
         }}
       >
-        <div ref={imageGalleryRef} className="flex items-center justify-center w-full h-full">
+        <div ref={imageGalleryRef} className="flex items-center justify-center w-full h-full max-w-5xl mx-auto">
           <ImageGallery
-            items={images?.map(image => ({ original: image, thumbnail: image }))}
+            items={images}
             additionalClass="w-full"
             thumbnailPosition="left"
             infinite={false}
@@ -41,6 +41,6 @@ function CatalogItemGallery({ images, onClose }: CatalogItemGalleryProps): JSX.E
 export default CatalogItemGallery;
 
 export interface CatalogItemGalleryProps {
-  images: string[];
+  images: { original: string; thumbnail: string }[];
   onClose: () => void;
 }

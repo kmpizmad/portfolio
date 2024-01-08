@@ -7,20 +7,19 @@ function CatalogItemBadges({ badges, maxWidth }: CatalogItemBadgesProps): JSX.El
   const [croppedBadges, setCroppedBadges] = useState<string[]>(() => badges.slice(0, 5));
   const [restBadges, setRestBadges] = useState<string[]>(badges.slice(5));
 
-  const hideBadges = useCallback((container: HTMLDivElement, maxWidth: number) => {
-    const nodes = Array.from(container.childNodes);
-    const accumulatedWidth = nodes.reduce((prev, curr) => prev + (curr as HTMLDivElement).offsetWidth, 0);
-    const currentWidth = accumulatedWidth + (nodes.length - 1) * 4;
+  const hideBadges = useCallback(
+    (container: HTMLDivElement, maxWidth: number) => {
+      const nodes = Array.from(container.childNodes);
+      const accumulatedWidth = nodes.reduce((prev, curr) => prev + (curr as HTMLDivElement).offsetWidth, 0);
+      const currentWidth = accumulatedWidth + (nodes.length - 1) * 4;
 
-    if (maxWidth < currentWidth) {
-      let newBadge: string;
-      setCroppedBadges(prev => {
-        newBadge = prev.pop() || '';
-        return [...prev];
-      });
-      setRestBadges(prev => [newBadge, ...prev]);
-    }
-  }, []);
+      if (maxWidth < currentWidth) {
+        setCroppedBadges(croppedBadges.slice(0, -1));
+        setRestBadges(prev => [croppedBadges.at(-1) || '', ...prev]);
+      }
+    },
+    [croppedBadges],
+  );
 
   useLayoutEffect(() => {
     if (!badgeContainerRef.current) return;
@@ -36,7 +35,7 @@ function CatalogItemBadges({ badges, maxWidth }: CatalogItemBadgesProps): JSX.El
   }, [hideBadges, maxWidth]);
 
   return (
-    <div ref={badgeContainerRef} className="flex items-center gap-1 cursor-default max-w-max">
+    <div ref={badgeContainerRef} className="flex items-baseline gap-1 cursor-default max-w-max">
       {croppedBadges.map((badgeLabel, index) => (
         <Badge key={`badge-${badgeLabel}-${index}`} variant="default">
           {badgeLabel}
