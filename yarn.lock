@@ -11162,7 +11162,7 @@ __metadata:
     react-dom: "npm:^18"
     react-image-gallery: "npm:^1.3.0"
     storybook: "npm:7.6.7"
-    swiper: "npm:^11.0.5"
+    swiper: "npm:^11.1.11"
     tailwind-merge: "npm:^2.2.0"
     tailwindcss: "npm:^3.3.0"
     tailwindcss-animate: "npm:^1.0.7"
@@ -13048,10 +13048,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swiper@npm:^11.0.5":
-  version: 11.0.5
-  resolution: "swiper@npm:11.0.5"
-  checksum: 443d147cdca55708dcf0fd174edfd68f6b55166578a9aedc7c636687c071f520e0bb626dd4ea9fb83feb21d61e4e6e4beda8d1f4b7e664077ebda9e22398d815
+"swiper@npm:^11.1.11":
+  version: 11.1.11
+  resolution: "swiper@npm:11.1.11"
+  checksum: 109e05d8d04de7453da87e49e714f0ecf742999938901eba533a4f2082a5a6b8c5fba036b2e3ccbc3da74a7770d2ff1cd610cff0fccefffb7f6dd3e0238f4935
   languageName: node
   linkType: hard
 
